@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chess Game</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="chessGame.js" defer></script>
+        <link rel="icon" href="assets/images/chess.jpg" type="image/jpg">    
+    </head>
+    
+    <body>
+        
+        <header id="header">
+            <img src="assets/images/chess.jpg" alt="Chess Logo" id="logo">
+            <h1><b>Chess Game</h1>
+        </header>        
+        
+        <div id="containerChessGame">
+            
+            <div id="buttonsSection">
+                <button id="startGame">Start Game</button>
+                <button id="resetGame">Reset Game</button>
+                <button id="other">other</button>
+                <button id="sunMoonToggle">☼</button>
+                <div id="timer">00:00</div>
+            </div>
+            
+            <div id="chessGame">
+                <div id="deadPieces">
+                    <div id="whiteDeadPieces">
+                        <h3>White Dead Pieces</h2>
+                        <div id="blackPieces"">
+
+                        </div>
+                        
+                    </div>
+                    <div id="blackDeadPieces">
+                        <h3>Black Dead Pieces</h2>
+                        <div id="whitePieces"">
+                            
+                        </div>    
+                    </div>                   
+                </div>
+
+                <div id="chessBoard">
+
+                </div>
+                <div id="moveHistory">
+                    <h3>Move History</h2>
+                </div>
+
+            </div>
+            
+            <div id="informationSection">
+                
+                <div id="aboutUS">
+                    <h3>About us</h3>
+                    <p>We are two student in first-year ingineering studies. This project represent an ambicious</p>
+                    <p>project of Object-Oriented Programming.</p>
+                </div>
+                <div id="rules">
+                    <h3>Rules</h2>
+                    <p>Chess is a two-player strategy board game played on an 8x8 grid. The objective is to checkmate the opponent's king.</p>
+                    <p>Each player starts with 16 pieces: 1 king, 1 queen, 2 rooks, 2 knights, 2 bishops, and 8 pawns.</p>
+                    <p>The game can end in checkmate, stalemate, or draw.</p>
+                </div>
+                <div id="howToPlay">
+                    <h3>How to Play</h2>
+                    <p>To move a piece, click on it and then click on the destination square.</p>
+                    <p>Each type of piece has its own movement rules. For example, rooks move in straight lines, while bishops move diagonally.</p>
+                    <p>Try to control the center of the board and protect your pieces!</p>
+
+                </div>
+
+            </div>
+            <div id="copyriting">
+                <p>© 2025 Chess Game. All rights reserved.</p>
+                <p>Developed by Mathis DA SILVA and Léo DUBLEUMORTIER.</p>
+                <p>Contact: <a href="mailto:"></a>mathis.dasilva@reseau.eseo.fr</p>
+                <p>Contact: <a href="mailto:"></a>leo.dubleumortier@reseau.eseo.fr</p>
+            </div>
+        </div>
+    </body>
+</html>
