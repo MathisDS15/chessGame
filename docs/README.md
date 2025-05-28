@@ -15,27 +15,23 @@ Chess Game is an interactive chess game project developed using HTML, CSS, and J
 docs/
     README.md
 src/
-    main/
-        java/
-            com/
-                chessgame/
-                    board/
-                        Board.java
-                    game/
-                        GameRules.java
-                        Player.java
-                    pieces/
-                        Bishop.java
-                        King.java
-                        Knight.java
-                        Pawn.java
-                        Queen.java
-                        Rook.java
-                    utils/
-    test/
-        java/
-            com/
-                chessgame/
+    fr/
+        eseo/
+            e3e/
+                devlogiciel/
+                        projet/ 
+                            board/
+                                Board.java
+                                Player.java
+                            piece/
+                                Bishop.java
+                                King.java
+                                Knight.java
+                                Pawn.java
+                                Piece.java
+                                Queen.java
+                                Rook.java
+    test/        
 web/
     chessGame.js
     index.html
