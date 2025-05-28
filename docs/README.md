@@ -31,7 +31,8 @@ src/
                                 Piece.java
                                 Queen.java
                                 Rook.java
-    test/        
+                        Chess.java
+test/        
 web/
     chessGame.js
     index.html
