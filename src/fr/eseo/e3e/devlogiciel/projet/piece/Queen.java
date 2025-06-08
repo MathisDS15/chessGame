@@ -1,40 +1,63 @@
 package fr.eseo.e3e.devlogiciel.projet.piece;
 
-import java.util.Scanner;
+public class Queen extends Piece {
 
-public class Queen {
+    /**
+     * Constructeur de la reine.
+     * @param isWhite true si la reine est blanche, false si elle est noire.
+     */
+    public Queen(boolean isWhite) {
 
-    Scanner scanner;
+        super(isWhite);
+    }
 
-    public void selection(int x, int y) {
-        scanner = new Scanner(System.in);
-        int positionQueenX = 0;
-        int positionQueenY = 0;
-        int dx = 0, dy = 0;
-        System.out.println("La dame est à la position : " + x + ", " + y);
-        while (!(
-                // Déplacement tour
-                (positionQueenX == x && positionQueenY != y) ||
-                        (positionQueenX != x && positionQueenY == y) ||
-                        // Déplacement fou
-                (dx != 0 && (dx == dy || dx == -dy))
-        )) {
-            System.out.println("Sur quelle case voulez-vous déplacer la dame ? la position X :");
-            positionQueenX = scanner.nextInt();
-            scanner.nextLine();
-            System.out.println("Sur quelle case voulez-vous déplacer la dame ? la position Y :");
-            positionQueenY = scanner.nextInt();
-            scanner.nextLine();
-            dx = positionQueenX - x;
-            dy = positionQueenY - y;
-            if (!(
-                    (positionQueenX == x && positionQueenY != y) ||
-                            (positionQueenX != x && positionQueenY == y) ||
-                            (dx != 0 && (dx == dy || dx == -dy))
-            )) {
-                System.out.println("La dame ne peut pas se déplacer de cette façon.");
+
+    /**
+     * Vérifie si le mouvement de la reine est valide.
+     * La reine peut se déplacer en ligne droite (horizontalement ou verticalement)
+     * ou en diagonale, et peut sauter par-dessus d'autres pièces.
+     *
+     * @param fromX Position X de départ
+     * @param fromY Position Y de départ
+     * @param toX Position X d'arrivée
+     * @param toY Position Y d'arrivée
+     * @param board Le plateau de jeu
+     * @return true si le mouvement est valide, false sinon
+     */
+    public boolean isValidMove(int fromX, int fromY, int toX, int toY, Piece[][] board) {
+        int dx = Math.abs(fromX - toX);
+        int dy = Math.abs(fromY - toY);
+        if (fromX == toX || fromY == toY) {
+            // Tour
+            int stepX = Integer.compare(toX, fromX);
+            int stepY = Integer.compare(toY, fromY);
+            int x = fromX + stepX, y = fromY + stepY;
+            while (x != toX || y != toY) {
+                if (board[x][y] != null) return false;
+                x += stepX;
+                y += stepY;
             }
+            return board[toX][toY] == null || board[toX][toY].isWhite() != isWhite;
+        } else if (dx == dy) {
+            // Fou
+            int stepX = Integer.compare(toX, fromX);
+            int stepY = Integer.compare(toY, fromY);
+            int x = fromX + stepX, y = fromY + stepY;
+            while (x != toX && y != toY) {
+                if (board[x][y] != null) return false;
+                x += stepX;
+                y += stepY;
+            }
+            return board[toX][toY] == null || board[toX][toY].isWhite() != isWhite;
         }
-        System.out.println("Vous avez déplacé la dame à la position : " + positionQueenX + ", " + positionQueenY);
+        return false;
+    }
+
+    /**
+     * Retourne une représentation textuelle de la reine pour l'affichage.
+     * @return "♕" pour une reine blanche, "♛" pour une reine noire.
+     */
+    public String toString() {
+        return isWhite ? "♕" : "♛";
     }
 }
