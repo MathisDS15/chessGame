@@ -36,32 +36,31 @@ src/
                            Piece.java
                            Queen.java
                            Rook.java
-    test/
-        fr/
-            eseo/
-                e3e/
-                    devlogiciel/
-                        projet/
-                            application/
-                                TestApplicationUI.java
-                            board/
-                                TestBoard.java
-                            piece/
-                                TestBishop.java
-                                TestKing.java
-                                TestKnight.java
-                                TestPawn.java
-                                TestPiece.java
-                                TestQueen.java
-                                TestRook.java   
-
-    web/
-        chessGame.js
-        index.html
-        styles.css
-        assets/
-            images/
-                chess.jpg
+test/
+    fr/
+        eseo/
+            e3e/
+                devlogiciel/
+                    projet/
+                        application/
+                            TestApplicationUI.java
+                        board/
+                            TestBoard.java
+                        piece/
+                            TestBishop.java
+                            TestKing.java
+                            TestKnight.java
+                            TestPawn.java
+                            TestPiece.java
+                            TestQueen.java
+                            TestRook.java   
+web/
+    chessGame.js
+    index.html
+    styles.css
+    assets/
+        images/
+            chess.jpg
 ```
 
 ## Installation
