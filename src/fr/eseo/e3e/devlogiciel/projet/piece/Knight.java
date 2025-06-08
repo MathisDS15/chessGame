@@ -1,42 +1,41 @@
 package fr.eseo.e3e.devlogiciel.projet.piece;
 
-import java.util.Scanner;
+public class Knight extends Piece {
 
-public class Knight {
+    /**
+     * Constructeur du cavalier.
+     * @param isWhite Indique si le cavalier est blanc ou noir.
+     */
+    public Knight(boolean isWhite) {
 
-    Scanner scanner;
+        super(isWhite);
+    }
 
-    public void selection(int x, int y) {
-        scanner = new Scanner(System.in);
-        int positionKnightX = 0;
-        int positionKnightY = 0;
-        int positionDeuxX = 0, positionDeuxY = 0;
-
-        System.out.println("Le cavalier est à la position : " + x + ", " + y);
-        // On boucle tant que le déplacement n'est pas un déplacement valide du cavalier
-        while (!(
-                (positionDeuxX == 2 && (positionDeuxY == 1 || positionDeuxY == -1)) ||
-                        (positionDeuxX == -2 && (positionDeuxY == 1 || positionDeuxY == -1)) ||
-                        (positionDeuxY == 2 && (positionDeuxX == 1 || positionDeuxX == -1)) ||
-                        (positionDeuxY == -2 && (positionDeuxX == 1 || positionDeuxX == -1))
-        )) {
-            System.out.println("Sur quelle case voulez-vous déplacer le cavalier ? la position X :");
-            positionKnightX = scanner.nextInt();
-            scanner.nextLine();
-            System.out.println("Sur quelle case voulez-vous déplacer le cavalier ? la position Y :");
-            positionKnightY = scanner.nextInt();
-            scanner.nextLine();
-            positionDeuxX = positionKnightX - x;
-            positionDeuxY = positionKnightY - y;
-            if (!(
-                    (positionDeuxX == 2 && (positionDeuxY == 1 || positionDeuxY == -1)) ||
-                            (positionDeuxX == -2 && (positionDeuxY == 1 || positionDeuxY == -1)) ||
-                            (positionDeuxY == 2 && (positionDeuxX == 1 || positionDeuxX == -1)) ||
-                            (positionDeuxY == -2 && (positionDeuxX == 1 || positionDeuxX == -1))
-            )) {
-                System.out.println("Le cavalier ne peut pas se déplacer de cette façon.");
-            }
+    /**
+     * Vérifie si le mouvement du cavalier est valide.
+     * Un cavalier se déplace en forme de "L", soit deux cases dans une direction et une case perpendiculaire.
+     *
+     * @param fromX Position X de départ.
+     * @param fromY Position Y de départ.
+     * @param toX Position X d'arrivée.
+     * @param toY Position Y d'arrivée.
+     * @param board Le plateau de jeu.
+     * @return true si le mouvement est valide, false sinon.
+     */
+    public boolean isValidMove(int fromX, int fromY, int toX, int toY, Piece[][] board) {
+        int dx = Math.abs(fromX - toX);
+        int dy = Math.abs(fromY - toY);
+        if ((dx == 2 && dy == 1) || (dx == 1 && dy == 2)) {
+            return board[toX][toY] == null || board[toX][toY].isWhite() != isWhite;
         }
-        System.out.println("Vous avez déplacé le cavalier à la position : " + positionKnightX + ", " + positionKnightY);
+        return false;
+    }
+
+    /**
+     * Retourne une représentation textuelle du cavalier pour l'affichage.
+     * @return "♘" pour un cavalier blanc, "♞" pour un cavalier noir.
+     */
+    public String toString() {
+        return isWhite ? "♘" : "♞";
     }
 }
