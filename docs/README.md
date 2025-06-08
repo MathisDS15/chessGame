@@ -1,14 +1,18 @@
 # Chess Game
 
 ## Description
-Chess Game is an interactive chess game project developed using HTML, CSS, and JavaScript. This project is designed to provide an intuitive and engaging user experience while implementing object-oriented programming concepts and dynamic features.
+Chess Game is an interactive chess project developed in Java (JavaFX) and JavaScript. It demonstrates object-oriented programming and provides an intuitive user experience.
 
 ## Features
-- **Dynamic Chessboard**: Automatically generates a chessboard with alternating light and dark squares.
-- **Light/Dark Theme**: Toggle between light and dark themes.
-- **Timer**: An integrated timer to track the elapsed time during a game.
-- **Move History**: Tracks the moves made during the game.
-- **Captured Pieces Management**: Displays captured pieces for each player.
+- **Dynamic Chessboard**: Automatic chessboard generation.
+- **Move Validation**: Enforces chess rules for all pieces.
+- **Graphical Interface**: JavaFX UI for the Java version.
+
+- **Web Version**: Interactive chess game using HTML, CSS, and JavaScript.
+- **Move History** (web): Tracks all moves.
+- **Captured Pieces Display** (web).
+- **Light/Dark Theme** (web).
+- **Timer** (web).
 
 ## Project Structure
 ```
@@ -19,27 +23,45 @@ src/
         eseo/
             e3e/
                 devlogiciel/
-                        projet/ 
+                  projet/
+                       application/
+                           ApplicationUI.java
+                       board/
+                           Board.java
+                       piece/
+                           Bishop.java
+                           King.java
+                           Knight.java
+                           Pawn.java
+                           Piece.java
+                           Queen.java
+                           Rook.java
+    test/
+        fr/
+            eseo/
+                e3e/
+                    devlogiciel/
+                        projet/
+                            application/
+                                TestApplicationUI.java
                             board/
-                                Board.java
-                                Player.java
+                                TestBoard.java
                             piece/
-                                Bishop.java
-                                King.java
-                                Knight.java
-                                Pawn.java
-                                Piece.java
-                                Queen.java
-                                Rook.java
-                        Chess.java
-test/        
-web/
-    chessGame.js
-    index.html
-    styles.css
-    assets/
-        images/
-            chess.jpg
+                                TestBishop.java
+                                TestKing.java
+                                TestKnight.java
+                                TestPawn.java
+                                TestPiece.java
+                                TestQueen.java
+                                TestRook.java   
+
+    web/
+        chessGame.js
+        index.html
+        styles.css
+        assets/
+            images/
+                chess.jpg
 ```
 
 ## Installation
