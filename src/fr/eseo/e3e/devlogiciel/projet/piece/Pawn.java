@@ -1,47 +1,44 @@
 package fr.eseo.e3e.devlogiciel.projet.piece;
 
-import java.util.Scanner;
 
-public class Pawn {
 
-    Scanner scanner;
+public class Pawn extends Piece {
 
-    public void selection(int x, int y) {
-        // Logique de déplacement du pion
-        scanner = new Scanner(System.in);
-        boolean isDeuxCases = false;
-        int positionPawnX = 0;
-        int positionPawnY = 0;
-        System.out.println("Le pion est à la position : " + x + ", " + y);
-        while(positionPawnX !=x){
-            System.out.println("Sur quelle case voulez-vous déplacer le pion ? la position X :");
-            positionPawnX = scanner.nextInt();
-            scanner.nextLine();
-            if(positionPawnX !=x){
-                System.out.println("Le pion ne peut pas se déplacer de cette façon.");
-            }
-        }
-        System.out.println("Sur quelle case voulez-vous déplacer le pion ? la position Y :");
-        positionPawnY = scanner.nextInt();
-        scanner.nextLine();
+    /** * Constructeur de la classe Pawn.
+     * @param isWhite Indique si le pion est blanc (true) ou noir (false).
+     */
+    public Pawn(boolean isWhite) {
 
-        if (y==6 && y-positionPawnY==2 ) {
-            isDeuxCases =true;
-            System.out.println("Vous avez déplacé le pion de deux cases.");
-            System.out.println("Vous avez déplacé le pion à la position : " + positionPawnX + ", " + positionPawnY);
-        } else if (y-positionPawnY==1 ) {
-            System.out.println("Vous avez déplacé le pion d'une case.");
-            System.out.println("Vous avez déplacé le pion à la position : " + positionPawnX + ", " + positionPawnY);
-        } else {
-            System.out.println("Déplacement invalide. Le pion ne peut se déplacer que d'une ou deux cases vers l'avant.");
-            return;
-        }
-
+        super(isWhite);
     }
 
-    public void promotion(){
-
+    /**
+     * Vérifie si le mouvement du pion est valide.
+     * Un pion peut avancer d'une case, de deux cases depuis sa position initiale, ou prendre une pièce adverse en diagonale.
+     *
+     * @param fromX Position X de départ.
+     * @param fromY Position Y de départ.
+     * @param toX Position X d'arrivée.
+     * @param toY Position Y d'arrivée.
+     * @param board Le plateau de jeu.
+     * @return true si le mouvement est valide, false sinon.
+     */
+    public boolean isValidMove(int fromX, int fromY, int toX, int toY, Piece[][] board) {
+        int dir = isWhite ? -1 : 1;
+        // Avance d'une case
+        if (fromX + dir == toX && fromY == toY && board[toX][toY] == null) return true;
+        // Avance de deux cases depuis la position initiale
+        if ((isWhite && fromX == 6 || !isWhite && fromX == 1) && fromX + 2*dir == toX && fromY == toY && board[toX][toY] == null && board[fromX+dir][fromY] == null) return true;
+        // Prise diagonale
+        if (fromX + dir == toX && Math.abs(fromY - toY) == 1 && board[toX][toY] != null && board[toX][toY].isWhite() != isWhite) return true;
+        return false;
     }
 
-
+    /**
+     * Retourne une représentation textuelle du pion pour l'affichage.
+     * @return "♙" pour un pion blanc, "♟" pour un pion noir.
+     */
+    public String toString() {
+        return isWhite ? "♙" : "♟";
+    }
 }
