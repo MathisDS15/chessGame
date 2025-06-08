@@ -1,32 +1,77 @@
 package fr.eseo.e3e.devlogiciel.projet.piece;
 
-import java.util.Scanner;
 
-public class King {
+public class King extends Piece {
 
-    Scanner scanner;
+    /**
+     * Constructeur de la classe King.
+     * @param isWhite Indique si le roi est blanc (true) ou noir (false).
+     */
+    public King(boolean isWhite) {
 
-    public void selection(int x, int y) {
-        // Logique de déplacement du pion
-        scanner = new Scanner(System.in);
-        int positionKingX = 0;
-        int positionKingY = 0;
-        int positionDeuxX = 2;
-        int positionDeuxY = 2;
-        System.out.println("Le pion est à la position : " + x + ", " + y);
-        while (!(positionDeuxX >= -1 && positionDeuxX <= 1 && positionDeuxY >= -1 && positionDeuxY <= 1 && !(positionDeuxX == 0 && positionDeuxY == 0))) {
-            System.out.println("Sur quelle case voulez-vous déplacer le pion ? la position X :");
-            positionKingX = scanner.nextInt();
-            scanner.nextLine();
-            System.out.println("Sur quelle case voulez-vous déplacer le pion ? la position Y :");
-            positionKingY = scanner.nextInt();
-            scanner.nextLine();
-            positionDeuxX = positionKingX - x;
-            positionDeuxY = positionKingY - y;
-            if (!(positionDeuxX >= -1 && positionDeuxX <= 1 && positionDeuxY >= -1 && positionDeuxY <= 1 && !(positionDeuxX == 0 && positionDeuxY == 0))) {
-                System.out.println("Le pion ne peut pas se déplacer de cette façon.");
+        super(isWhite);
+    }
+
+    /**
+     * Vérifie si le mouvement du roi est valide.
+     * Un roi peut se déplacer d'une case dans n'importe quelle direction, mais pas sur une case occupée par une pièce de la même couleur.
+     *
+     * @param fromX Position X de départ.
+     * @param fromY Position Y de départ.
+     * @param toX Position X d'arrivée.
+     * @param toY Position Y d'arrivée.
+     * @param board Le plateau de jeu.
+     * @return true si le mouvement est valide, false sinon.
+     */
+    public boolean isValidMove(int fromX, int fromY, int toX, int toY, Piece[][] board) {
+
+        int dx = Math.abs(fromX - toX);
+        int dy = Math.abs(fromY - toY);
+        if (dx <= 1 && dy <= 1) {
+            return board[toX][toY] == null || board[toX][toY].isWhite() != isWhite;
+        }
+        return false;
+    }
+
+    /**
+     * Retourne une représentation textuelle du roi pour l'affichage.
+     * @return "♔" pour un roi blanc, "♚" pour un roi noir.
+     */
+    public String toString() {
+        return isWhite ? "♔" : "♚";
+    }
+
+    /**
+     * Vérifie si le roi est en échec.
+     * Un roi est en échec s'il peut être attaqué par une pièce adverse.
+     *
+     * @param kingX Position X du roi.
+     * @param kingY Position Y du roi.
+     * @param board Le plateau de jeu.
+     * @return true si le roi est en échec, false sinon.
+     */
+    public boolean kingInCheck(int kingX, int kingY, Piece [][] board) {
+
+        for (int x = 0; x < board.length; x++) {
+            for (int y = 0; y < board[x].length; y++) {
+                Piece piece = board[x][y];
+                if (piece != null && piece.isWhite() != isWhite) {
+                    if (piece.isValidMove(x, y, kingX, kingY, board)) {
+                        return true;
+                    }
+                }
             }
         }
-        System.out.println("Vous avez déplacé le pion à la position : " + positionKingX + ", " + positionKingY);
+        return false;
+    }
+
+    public boolean checkmate(){
+
+        return false;
+    }
+
+    public boolean inPat(){
+
+        return false;
     }
 }
